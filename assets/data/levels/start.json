@@ -15,7 +15,7 @@
       "gridCellsX": 20,
       "gridCellsY": 15,
       "entities": [
-        {"name": "player", "id": 0, "_eid": "97124408", "x": 144, "y": 48, "originX": 0, "originY": 0},
+        {"name": "player", "id": 0, "_eid": "97124408", "x": 144, "y": 64, "originX": 0, "originY": 0},
         {
           "name": "interactable_sprite_object",
           "id": 1,
@@ -24,7 +24,7 @@
           "y": 160,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "hi", "has_collision": true, "graphic_color": "#ff0000ff", "has_image": false, "image_path": "proj:"}
+          "values": {"id": "hi", "has_collision": true, "graphic_color": "#ff0000ff", "has_image": false, "image_path": "proj:../../images/dummy-tilemap.png"}
         }
       ]
     },
