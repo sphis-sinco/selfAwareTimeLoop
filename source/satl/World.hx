@@ -43,22 +43,7 @@ class World extends FlxTilemap
 
 		for (tile in Reflect.field(Json.parse(Assets.getText('assets/data/tilesets.json')), tilemap_label) ?? [])
 		{
-			var collision:FlxDirectionFlags = switch (Std.string(tile?.collision).toLowerCase())
-			{
-				case 'left': LEFT;
-				case 'down': DOWN;
-				case 'up': UP;
-				case 'right': RIGHT;
-
-				case 'ceiling': CEILING;
-				case 'floor': FLOOR;
-				case 'wall': WALL;
-				case 'any': ANY;
-
-				case 'none': NONE;
-
-				default: NONE;
-			};
+			var collision:FlxDirectionFlags = Utilities.convertStringToDirectionFlag(Std.string(tile?.collision).toLowerCase());
 
 			if (tile?.id != null)
 				setTileProperties(tile.id, collision);

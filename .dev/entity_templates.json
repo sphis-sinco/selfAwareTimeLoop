@@ -82,7 +82,8 @@
           "display": 2,
           "defaults": "proj:",
           "extensions": ["png"]
-        }
+        },
+        {"name": "collision_type", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
     }
   ]

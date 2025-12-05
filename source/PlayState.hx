@@ -1,5 +1,6 @@
 package;
 
+import satl.Utilities;
 import flixel.util.FlxColor;
 import flixel.FlxBasic;
 import satl.InteractableSpriteObject;
@@ -93,6 +94,7 @@ class PlayState extends FlxState
 				interactable_sprite_object.makeGraphic(16, 16, FlxColor.fromString(color) ?? FlxColor.RED);
 			}
 
+			interactable_sprite_object.allowCollisions = Utilities.convertStringToDirectionFlag(entity.values?.collision_type);
 			interactable_sprite_object.data = entity.values;
 
 			entities.add(interactable_sprite_object);
