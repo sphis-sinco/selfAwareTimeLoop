@@ -18,7 +18,6 @@ class PlayState extends FlxState
 		super.create();
 
 		player = new Player();
-		add(player);
 
 		map = new FlxOgmo3Loader('assets/data/levels/dummy.ogmo', 'assets/data/levels/dummy.json');
 		walls = map.loadTilemap('assets/images/tilemap.png', 'walls');
@@ -28,6 +27,7 @@ class PlayState extends FlxState
 		add(walls);
 
 		map.loadEntities(placeEntities, 'entities');
+		add(player);
 	}
 
 	public function placeEntities(entity:EntityData)
