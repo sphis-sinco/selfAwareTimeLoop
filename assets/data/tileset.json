@@ -2,11 +2,11 @@
     "tiles": [
         {
             "id": 1,
-            "collision": 0
+            "collision": "NONE"
         },
         {
             "id": 2,
-            "collision": 3
+            "collision": "ANY"
         }
     ]
 }
