@@ -24,10 +24,9 @@ class Player extends FlxSprite
 	override public function new()
 	{
 		super();
+		initMergedControls();
 
 		makeGraphic(16, 16, FlxColor.BLUE);
-
-		initMergedControls();
 	}
 
 	public function initMergedControls()
