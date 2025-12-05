@@ -1,5 +1,6 @@
 package satl;
 
+import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.input.keyboard.FlxKey;
 import flixel.FlxSprite;
@@ -14,7 +15,33 @@ class Player extends FlxSprite
 		interact: [FlxKey.SPACE]
 	};
 
+	public var merged_controls(get, never):Dynamic;
+
+	function get_merged_controls():Dynamic
+	{
+		var merged_movement:Array<FlxKey> = [];
+		var merged_interaction:Array<FlxKey> = [];
+
+		for (key in controls.left)
+			merged_movement.push(key);
+		for (key in controls.down)
+			merged_movement.push(key);
+		for (key in controls.up)
+			merged_movement.push(key);
+		for (key in controls.right)
+			merged_movement.push(key);
+
+		for (key in controls.interact)
+			merged_interaction.push(key);
+
+		return {
+			movement: merged_movement,
+			interaction: merged_interaction
+		};
+	}
+
 	public var current_speed:Float = 0.0;
+	public var speed_acceleration:Float = 0.1;
 	public var max_speed:Float = 4.0;
 
 	override public function new()
@@ -28,9 +55,21 @@ class Player extends FlxSprite
 	{
 		super.update(elapsed);
 
-		if (current_speed > max_speed)
+		if (FlxG.keys.anyPressed(merged_controls.movement))
 		{
-			current_speed = max_speed;
+			current_speed *= speed_acceleration;
+
+			if (FlxG.keys.anyPressed(controls.left))
+				this.x -= current_speed;
+			else if (FlxG.keys.anyPressed(controls.down))
+				this.x += current_speed;
+			else if (FlxG.keys.anyPressed(controls.up))
+				this.y -= current_speed;
+			else if (FlxG.keys.anyPressed(controls.right))
+				this.x += current_speed;
 		}
+
+		if (current_speed > max_speed)
+			current_speed = max_speed;
 	}
 }
