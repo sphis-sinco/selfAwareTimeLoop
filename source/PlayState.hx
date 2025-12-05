@@ -1,5 +1,7 @@
 package;
 
+import flixel.addons.editors.ogmo.FlxOgmo3Loader.EntityData;
+import satl.LevelData;
 import lime.utils.Assets;
 import haxe.Json;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -7,8 +9,6 @@ import satl.World;
 import flixel.FlxObject;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
-import flixel.tile.FlxTilemap;
-import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import satl.Player;
 import flixel.FlxState;
 
@@ -18,7 +18,7 @@ class PlayState extends FlxState
 	public var player_campos:FlxObject;
 
 	public var tilemaps:FlxTypedGroup<World>;
-	public var level_data:Dynamic;
+	public var level_data:LevelData;
 
 	override public function new(?ogmo:String = 'main', ?level:String = 'start')
 	{
