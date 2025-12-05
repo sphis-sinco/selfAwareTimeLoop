@@ -1,5 +1,8 @@
 package;
 
+import flixel.util.FlxColor;
+import flixel.FlxBasic;
+import satl.InteractableSpriteObject;
 import flixel.util.FlxSort;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader.EntityData;
 import satl.LevelData;
@@ -19,6 +22,7 @@ class PlayState extends FlxState
 	public var player_campos:FlxObject;
 
 	public var tilemaps:FlxTypedGroup<World>;
+	public var entities:FlxTypedGroup<FlxBasic>;
 	public var level_data:LevelData;
 
 	override public function new(?ogmo:String = 'main', ?level:String = 'start')
@@ -32,6 +36,9 @@ class PlayState extends FlxState
 
 		tilemaps = new FlxTypedGroup<World>();
 		add(tilemaps);
+
+		entities = new FlxTypedGroup<FlxBasic>();
+		add(entities);
 
 		level_data.layers.sort((l1, l2) ->
 		{
@@ -64,6 +71,28 @@ class PlayState extends FlxState
 	{
 		if (entity.name == 'player')
 			player.setPosition(entity.x, entity.y);
+
+		if (entity.name == 'interactable_sprite_object')
+		{
+			if (entity.values?.id == null)
+				return;
+
+			var interactable_sprite_object:InteractableSpriteObject = new InteractableSpriteObject(entity.values.id);
+			Reflect.deleteField(entity.values, 'id');
+
+			if (entity.values?.has_image ?? false && entity.values?.image_path != null)
+			{
+				interactable_sprite_object.loadGraphic('assets/' + entity.values?.image_path.replace('../', ''));
+			}
+			else
+			{
+				interactable_sprite_object.makeGraphic(16, 16, FlxColor.fromString(entity.values?.graphic_color) ?? FlxColor.RED);
+			}
+
+			interactable_sprite_object.data = entity.values;
+
+			entities.add(interactable_sprite_object);
+		}
 	}
 
 	override public function update(elapsed:Float)
@@ -75,6 +104,17 @@ class PlayState extends FlxState
 			for (layer in level_data?.layers ?? [])
 				if (layer.collision && layer.name == tilemap.layer)
 					FlxG.collide(player, tilemap);
+
+		for (entity in entities)
+		{
+			var iso:InteractableSpriteObject = cast entity;
+
+			if (iso != null)
+			{
+				if (iso.data.has_collision)
+					FlxG.collide(player, iso);
+			}
+		}
 
 		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y);
 		FlxG.camera.follow(player_campos, FlxCameraFollowStyle.TOPDOWN_TIGHT, 1);

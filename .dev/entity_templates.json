@@ -36,6 +36,54 @@
       "nodeGhost": true,
       "tags": [],
       "values": []
+    },
+    {
+      "exportID": "97604579",
+      "name": "interactable_sprite_object",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "id", "definition": "String", "display": 2, "defaults": "Unknown", "maxLength": 0, "trimWhitespace": true},
+        {"name": "has_collision", "definition": "Boolean", "display": 2, "defaults": false},
+        {"name": "graphic_color", "definition": "Color", "display": 2, "defaults": "#ff0000ff", "includeAlpha": false},
+        {"name": "has_image", "definition": "Boolean", "display": 2, "defaults": false},
+        {
+          "name": "image_path",
+          "definition": "Filepath",
+          "display": 2,
+          "defaults": "proj:",
+          "extensions": ["png"]
+        }
+      ]
     }
   ]
 }
