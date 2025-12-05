@@ -16,7 +16,15 @@ class World extends FlxTilemap
 	{
 		super();
 
+		reload(level_name);
+	}
+
+	public function reload(level_name:String)
+	{
+        trace('Loading level: ' + level_name);
+
 		map = new FlxOgmo3Loader('assets/data/levels/' + level_name + '.ogmo', 'assets/data/levels/' + level_name + '.json');
+		var tilemap_label:String = '';
 		@:privateAccess
 		for (layer in map.level.layers)
 			if (layer?.tileset != null && layer.name == 'walls')
@@ -24,11 +32,13 @@ class World extends FlxTilemap
 				for (tileset in map.project.tilesets)
 					if (tileset.label == layer.tileset)
 						map.loadTilemap('assets/' + tileset.path.replace('../', ''), 'walls', this);
+				tilemap_label = layer.tileset.toLowerCase();
 				break;
 			}
 		follow();
+        trace('Tilemap: ' + tilemap_label);
 
-		for (tile in Json.parse(Assets.getText('assets/data/tileset.json'))?.tiles ?? [])
+		for (tile in Reflect.field(Json.parse(Assets.getText('assets/data/tileset.json')), tilemap_label) ?? [])
 		{
 			var collision:FlxDirectionFlags = switch (Std.string(tile?.collision).toLowerCase())
 			{

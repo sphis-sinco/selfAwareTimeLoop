@@ -1,5 +1,5 @@
 {
-    "tiles": [
+    "dummy": [
         {
             "id": 1,
             "collision": "NONE"
