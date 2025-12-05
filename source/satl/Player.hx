@@ -15,9 +15,22 @@ class Player extends FlxSprite
 		interact: [FlxKey.SPACE]
 	};
 
-	public var merged_controls(get, never):Dynamic;
+	public var merged_controls:Dynamic;
 
-	function get_merged_controls():Dynamic
+	public var current_speed:Float = 0.0;
+	public var speed_acceleration:Float = 0.1;
+	public var max_speed:Float = 4.0;
+
+	override public function new()
+	{
+		super();
+
+		makeGraphic(16, 16, FlxColor.BLUE);
+
+		initMergedControls();
+	}
+
+	public function initMergedControls()
 	{
 		var merged_movement:Array<FlxKey> = [];
 		var merged_interaction:Array<FlxKey> = [];
@@ -34,21 +47,10 @@ class Player extends FlxSprite
 		for (key in controls.interact)
 			merged_interaction.push(key);
 
-		return {
+		merged_controls = {
 			movement: merged_movement,
 			interaction: merged_interaction
 		};
-	}
-
-	public var current_speed:Float = 0.0;
-	public var speed_acceleration:Float = 0.1;
-	public var max_speed:Float = 4.0;
-
-	override public function new()
-	{
-		super();
-
-		makeGraphic(16, 16, FlxColor.BLUE);
 	}
 
 	override function update(elapsed:Float)
