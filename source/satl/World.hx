@@ -18,7 +18,14 @@ class World extends FlxTilemap
 
 		map = new FlxOgmo3Loader('assets/data/levels/' + level_name + '.ogmo', 'assets/data/levels/' + level_name + '.json');
 		@:privateAccess
-		map.loadTilemap('assets/' + map.project.tilesets[0].path.replace('../', ''), 'walls', this);
+		for (layer in map.level.layers)
+			if (layer?.tileset != null && layer.name == 'walls')
+			{
+				for (tileset in map.project.tilesets)
+					if (tileset.label == layer.tileset)
+						map.loadTilemap('assets/' + tileset.path.replace('../', ''), 'walls', this);
+				break;
+			}
 		follow();
 
 		for (tile in Json.parse(Assets.getText('assets/data/tileset.json'))?.tiles ?? [])
