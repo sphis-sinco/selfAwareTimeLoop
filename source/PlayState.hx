@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.tile.FlxTilemap;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import satl.Player;
@@ -40,5 +41,6 @@ class PlayState extends FlxState
 		super.update(elapsed);
 
 		player.update(elapsed);
+		FlxG.collide(player, walls);
 	}
 }
