@@ -25,6 +25,8 @@ class Player extends FlxSprite
 		initMergedControls();
 
 		makeGraphic(16, 16, FlxColor.BLUE);
+
+		updateHitbox();
 	}
 
 	public function initMergedControls()

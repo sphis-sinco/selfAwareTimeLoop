@@ -29,7 +29,7 @@ class PlayState extends FlxState
 		map.loadEntities(placeEntities, 'entities');
 		add(player);
 
-		FlxG.camera.zoom = 2;
+		FlxG.camera.zoom = 4;
 	}
 
 	public function placeEntities(entity:EntityData)
