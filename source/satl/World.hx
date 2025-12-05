@@ -39,7 +39,7 @@ class World extends FlxTilemap
 				break;
 			}
 		follow();
-		trace('    * Tilemap: ' + tilemap_label);
+		trace('  * Tilemap: ' + tilemap_label);
 
 		for (tile in Reflect.field(Json.parse(Assets.getText('assets/data/tilesets.json')), tilemap_label) ?? [])
 		{

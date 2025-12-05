@@ -24,7 +24,7 @@
           "y": 160,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "hi", "has_collision": true, "graphic_color": "#ff0000ff", "has_image": false, "image_path": "proj:../../images/dummy-tilemap.png", "collision_type": "NONE"}
+          "values": {"id": "hi", "has_collision": true, "graphic_color": "#ff0000ff", "has_image": false, "image_path": "proj:../../images/dummy-tilemap.png", "collision_type": "ANY"}
         }
       ]
     },

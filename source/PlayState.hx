@@ -85,7 +85,7 @@ class PlayState extends FlxState
 
 			if (entity.values?.has_image ?? false && entity.values?.image_path != null)
 			{
-				interactable_sprite_object.loadGraphic('assets/' + entity.values?.image_path.replace('../', ''));
+				interactable_sprite_object.loadGraphic('assets/' + entity.values?.image_path.replace('../', '').replace('proj:', '').replace('lvl:', ''));
 			}
 			else
 			{
@@ -94,8 +94,13 @@ class PlayState extends FlxState
 				interactable_sprite_object.makeGraphic(16, 16, FlxColor.fromString(color) ?? FlxColor.RED);
 			}
 
-			interactable_sprite_object.allowCollisions = Utilities.convertStringToDirectionFlag(entity.values?.collision_type);
+			if (entity.values?.has_collision)
+				interactable_sprite_object.allowCollisions = Utilities.convertStringToDirectionFlag(entity.values?.collision_type);
 			interactable_sprite_object.data = entity.values;
+
+			trace('Created I.S.O. with id: ' + interactable_sprite_object.id);
+			for (field in Reflect.fields(interactable_sprite_object.data))
+				trace('  * ' + field + ': ' + Reflect.field(interactable_sprite_object.data, field));
 
 			entities.add(interactable_sprite_object);
 		}
