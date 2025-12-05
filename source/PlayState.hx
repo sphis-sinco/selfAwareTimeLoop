@@ -22,7 +22,8 @@ class PlayState extends FlxState
 
 		player = new Player();
 
-		tilemap = new World('dummy');
+		tilemap = new World('dummy', 'dummy');
+		tilemap.reload('dummy', 'dummy-2');
 		add(tilemap);
 
 		tilemap.map.loadEntities(placeEntities, 'entities');

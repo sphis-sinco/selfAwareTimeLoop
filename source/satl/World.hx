@@ -12,18 +12,18 @@ class World extends FlxTilemap
 {
 	public var map:FlxOgmo3Loader;
 
-	override public function new(level_name:String)
+	override public function new(ogmo_name:String, level_name:String)
 	{
 		super();
 
-		reload(level_name);
+		reload(ogmo_name, level_name);
 	}
 
-	public function reload(level_name:String)
+	public function reload(ogmo_name:String, level_name:String)
 	{
-        trace('Loading level: ' + level_name);
+		trace('Loading level: ' + level_name);
 
-		map = new FlxOgmo3Loader('assets/data/levels/' + level_name + '.ogmo', 'assets/data/levels/' + level_name + '.json');
+		map = new FlxOgmo3Loader('assets/data/levels/' + ogmo_name + '.ogmo', 'assets/data/levels/' + level_name + '.json');
 		var tilemap_label:String = '';
 		@:privateAccess
 		for (layer in map.level.layers)
@@ -36,7 +36,7 @@ class World extends FlxTilemap
 				break;
 			}
 		follow();
-        trace('Tilemap: ' + tilemap_label);
+		trace('Tilemap: ' + tilemap_label);
 
 		for (tile in Reflect.field(Json.parse(Assets.getText('assets/data/tileset.json')), tilemap_label) ?? [])
 		{
