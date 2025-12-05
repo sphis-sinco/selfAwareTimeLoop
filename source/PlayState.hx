@@ -28,6 +28,8 @@ class PlayState extends FlxState
 
 		map.loadEntities(placeEntities, 'entities');
 		add(player);
+
+		FlxG.camera.zoom = 2;
 	}
 
 	public function placeEntities(entity:EntityData)
@@ -41,6 +43,8 @@ class PlayState extends FlxState
 		super.update(elapsed);
 
 		player.update(elapsed);
+
 		FlxG.collide(player, walls);
+		FlxG.camera.follow(player, TOPDOWN, 1);
 	}
 }
