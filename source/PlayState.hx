@@ -79,7 +79,7 @@ class PlayState extends FlxState
 
 			var interactable_sprite_object:InteractableSpriteObject = new InteractableSpriteObject(entity.values.id);
 			Reflect.deleteField(entity.values, 'id');
-			
+
 			interactable_sprite_object.setPosition(entity.x, entity.y);
 
 			if (entity.values?.has_image ?? false && entity.values?.image_path != null)
@@ -88,7 +88,9 @@ class PlayState extends FlxState
 			}
 			else
 			{
-				interactable_sprite_object.makeGraphic(16, 16, FlxColor.fromString(entity.values?.graphic_color) ?? FlxColor.RED);
+				var color = entity.values?.graphic_color.substring(0, entity.values?.graphic_color.length - 2);
+				// trace(color);
+				interactable_sprite_object.makeGraphic(16, 16, FlxColor.fromString(color) ?? FlxColor.RED);
 			}
 
 			interactable_sprite_object.data = entity.values;
