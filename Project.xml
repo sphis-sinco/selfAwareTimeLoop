@@ -33,7 +33,7 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug"/>
 
 	<source path="source" />
-	<assets path="assets" exclude="*.ogmo"/>
+	<assets path="assets"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
