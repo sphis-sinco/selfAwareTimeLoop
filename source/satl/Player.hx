@@ -15,6 +15,9 @@ class Player extends FlxSprite
         interact: [FlxKey.SPACE]
     };
 
+    public var current_speed:Float = 0.0;
+    public var max_speed:Float = 4.0;
+
 	override public function new()
 	{
 		super();
