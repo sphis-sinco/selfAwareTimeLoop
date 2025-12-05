@@ -1,5 +1,5 @@
 {
-  "name": "Dummy World",
+  "name": "New Project",
   "ogmoVersion": "3.4.0",
   "levelPaths": ["."],
   "backgroundColor": "#282c34ff",
@@ -8,36 +8,36 @@
   "directoryDepth": 5,
   "layerGridDefaultSize": {"x": 16, "y": 16},
   "levelDefaultSize": {"x": 320, "y": 240},
-  "levelMinSize": {"x": 640, "y": 360},
-  "levelMaxSize": {"x": 1280, "y": 720},
+  "levelMinSize": {"x": 128, "y": 128},
+  "levelMaxSize": {"x": 4096, "y": 4096},
   "levelValues": [],
   "defaultExportMode": ".json",
   "compactExport": false,
   "externalScript": "",
-  "playCommand": "",
+  "playCommand": "cd ..\\..\\..\\;lime test hl -debug",
   "entityTags": [],
   "layers": [
     {
       "definition": "entity",
       "name": "entities",
       "gridSize": {"x": 16, "y": 16},
-      "exportID": "90779013",
+      "exportID": "97121786",
       "requiredTags": [],
       "excludedTags": []
     },
     {
       "definition": "tile",
-      "name": "walls",
+      "name": "wall",
       "gridSize": {"x": 16, "y": 16},
-      "exportID": "90778429",
+      "exportID": "97128800",
       "exportMode": 0,
       "arrayMode": 0,
-      "defaultTileset": "Dummy"
+      "defaultTileset": ""
     }
   ],
   "entities": [
     {
-      "exportID": "90783105",
+      "exportID": "97124408",
       "name": "player",
       "limit": -1,
       "size": {"x": 16, "y": 16},
@@ -74,6 +74,6 @@
     }
   ],
   "tilesets": [
-    {"label": "Dummy", "path": "../images/dummy-tilemap.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAQCAYAAABQrvyxAAAAtElEQVR4AeyWMQ5AMBSGG6ewWQ0u4iaO4ECOZLDaOjIZySdpUo2B9wavCckfDPW+r33RFk55tX2/d8MgimYsNRmvFqiaxs3jKIqfJvH0UXP13qkFxASKgQGeT2QnEMNnJ5DCmxUA9C70PNBxsmuhGJ7nX4BZ+DL/Cnw5+9Q2twL8fdih77ItC8yXmBII8BfC5CWVMCPwBD64xBImBN7ApxJqAYqzQ0pS1vV5iqXfA9ibOytxAAAA//+6r3++AAAABklEQVQDAJUWAKYb4qPnAAAAAElFTkSuQmCC", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0}
+    {"label": "Main", "path": "../../images/tilemap.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABABAMAAABYR2ztAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJUExURVJEWX/J/////wSX9R4AAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCA1LjEuMTGKCBbOAAAAuGVYSWZJSSoACAAAAAUAGgEFAAEAAABKAAAAGwEFAAEAAABSAAAAKAEDAAEAAAADAAAAMQECABEAAABaAAAAaYcEAAEAAABsAAAAAAAAAKOTAADoAwAAo5MAAOgDAABQYWludC5ORVQgNS4xLjExAAADAACQBwAEAAAAMDIzMAGgAwABAAAAAQAAAAWgBAABAAAAlgAAAAAAAAACAAEAAgAEAAAAUjk4AAIABwAEAAAAMDEwMAAAAADY5TB4zfSjcAAAADNJREFUSMdjYIACQRwAJs8gpAQB6PSogmGlQJAAwKkTbsKoguGkYDQ9jCpQGk0Powqw0wB3s+j5aT8I1gAAAABJRU5ErkJggg==", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0}
   ]
 }
