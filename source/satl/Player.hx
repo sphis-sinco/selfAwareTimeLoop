@@ -17,7 +17,7 @@ class Player extends FlxSprite
 
 	public var merged_controls:Dynamic;
 
-	public var speed:Float = 4.0;
+	public var speed:Float = 2.0;
 
 	override public function new()
 	{
