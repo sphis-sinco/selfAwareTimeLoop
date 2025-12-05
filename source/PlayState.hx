@@ -1,5 +1,7 @@
 package;
 
+import flixel.FlxObject;
+import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
 import flixel.tile.FlxTilemap;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
@@ -9,9 +11,10 @@ import flixel.FlxState;
 class PlayState extends FlxState
 {
 	public var player:Player;
+	public var player_campos:FlxObject;
 
-	var map:FlxOgmo3Loader;
-	var walls:FlxTilemap;
+	public var map:FlxOgmo3Loader;
+	public var walls:FlxTilemap;
 
 	override public function create()
 	{
@@ -29,6 +32,9 @@ class PlayState extends FlxState
 		map.loadEntities(placeEntities, 'entities');
 		add(player);
 
+		player_campos = new FlxObject(0, 0, player.width, player.height);
+		add(player_campos);
+
 		FlxG.camera.zoom = 4;
 	}
 
@@ -43,8 +49,9 @@ class PlayState extends FlxState
 		super.update(elapsed);
 
 		player.update(elapsed);
-
 		FlxG.collide(player, walls);
-		FlxG.camera.follow(player, TOPDOWN, 1);
+
+		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y - 64);
+		FlxG.camera.follow(player_campos, FlxCameraFollowStyle.TOPDOWN_TIGHT, 1);
 	}
 }
