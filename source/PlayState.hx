@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxSort;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader.EntityData;
 import satl.LevelData;
 import lime.utils.Assets;
@@ -32,12 +33,17 @@ class PlayState extends FlxState
 		tilemaps = new FlxTypedGroup<World>();
 		add(tilemaps);
 
-		for (layer in level_data?.layers ?? [])
+		level_data.layers.sort((l1, l2) ->
+		{
+			return FlxSort.byValues(FlxSort.DESCENDING, l1.layer, l2.layer);
+		});
+
+		for (layer in level_data.layers)
 		{
 			var tilemap = new World(ogmo, level, layer.name);
 			tilemaps.add(tilemap);
 
-			if (layer.main)
+			if (layer.has_entities)
 				tilemap.map.loadEntities(placeEntities, 'entities');
 		}
 
@@ -67,7 +73,7 @@ class PlayState extends FlxState
 		player.update(elapsed);
 		for (tilemap in tilemaps.members)
 			for (layer in level_data?.layers ?? [])
-				if (layer.main && layer.name == tilemap.layer)
+				if (layer.collision && layer.name == tilemap.layer)
 					FlxG.collide(player, tilemap);
 
 		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y);

@@ -2,17 +2,16 @@
     "layers": [
         {
             "name": "wall",
-            "main": true,
+            "has_entities": true,
+            "collision": true,
             "layer": 1
         },
         {
             "name": "back_wall",
-            "main": false,
             "layer": 2
         },
         {
             "name": "backer_wall",
-            "main": false,
             "layer": 3
         }
     ]

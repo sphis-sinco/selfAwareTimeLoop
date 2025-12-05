@@ -6,5 +6,7 @@ typedef LevelData = {
 
 typedef LayerData = {
     name:String,
-    main:Bool
+    has_entities:Bool,
+    collision:Bool,
+    layer:Int
 }
