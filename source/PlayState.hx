@@ -35,7 +35,7 @@ class PlayState extends FlxState
 		player_campos = new FlxObject(0, 0, player.width, player.height);
 		add(player_campos);
 
-		FlxG.camera.zoom = 4;
+		FlxG.camera.zoom = 2;
 	}
 
 	public function placeEntities(entity:EntityData)
