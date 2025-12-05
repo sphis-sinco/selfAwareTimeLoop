@@ -42,6 +42,15 @@
       "exportMode": 0,
       "arrayMode": 1,
       "defaultTileset": "Main"
+    },
+    {
+      "definition": "tile",
+      "name": "backer_wall",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "97323405",
+      "exportMode": 0,
+      "arrayMode": 1,
+      "defaultTileset": "Main"
     }
   ],
   "entities": [
