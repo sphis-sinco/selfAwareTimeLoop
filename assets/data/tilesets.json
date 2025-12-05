@@ -11,27 +11,27 @@
     ],
     "main": [
         {
-            "id": 0,
+            "id": 1,
             "collision": "ANY"
         },
         {
-            "id": 1,
+            "id": 2,
             "collision": "NONE"
         },
         {
-            "id": 2,
+            "id": 3,
             "collision": "LEFT"
         },
         {
-            "id": 3,
+            "id": 4,
             "collision": "RIGHT"
         },
         {
-            "id": 4,
+            "id": 5,
             "collision": "UP"
         },
         {
-            "id": 5,
+            "id": 6,
             "collision": "DOWN"
         }
     ]
