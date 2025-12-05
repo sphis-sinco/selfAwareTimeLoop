@@ -31,7 +31,7 @@ class PlayState extends FlxState
 		player_campos = new FlxObject(0, 0, player.width, player.height);
 		add(player_campos);
 
-		FlxG.camera.zoom = 2;
+		// FlxG.camera.zoom = 2;
 	}
 
 	public function placeEntities(entity:EntityData)
@@ -47,7 +47,7 @@ class PlayState extends FlxState
 		player.update(elapsed);
 		FlxG.collide(player, tilemap);
 
-		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y - 64);
+		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y);
 		FlxG.camera.follow(player_campos, FlxCameraFollowStyle.TOPDOWN_TIGHT, 1);
 	}
 }
