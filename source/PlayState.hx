@@ -1,5 +1,6 @@
 package;
 
+import satl.World;
 import flixel.FlxObject;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
@@ -13,8 +14,7 @@ class PlayState extends FlxState
 	public var player:Player;
 	public var player_campos:FlxObject;
 
-	public var map:FlxOgmo3Loader;
-	public var walls:FlxTilemap;
+	public var tilemap:World;
 
 	override public function create()
 	{
@@ -22,14 +22,10 @@ class PlayState extends FlxState
 
 		player = new Player();
 
-		map = new FlxOgmo3Loader('assets/data/levels/dummy.ogmo', 'assets/data/levels/dummy.json');
-		walls = map.loadTilemap('assets/images/tilemap.png', 'walls');
-		walls.follow();
-		walls.setTileProperties(1, NONE);
-		walls.setTileProperties(2, ANY);
-		add(walls);
+		tilemap = new World('dummy');
+		add(tilemap);
 
-		map.loadEntities(placeEntities, 'entities');
+		tilemap.map.loadEntities(placeEntities, 'entities');
 		add(player);
 
 		player_campos = new FlxObject(0, 0, player.width, player.height);
@@ -49,7 +45,7 @@ class PlayState extends FlxState
 		super.update(elapsed);
 
 		player.update(elapsed);
-		FlxG.collide(player, walls);
+		FlxG.collide(player, tilemap);
 
 		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y - 64);
 		FlxG.camera.follow(player_campos, FlxCameraFollowStyle.TOPDOWN_TIGHT, 1);
