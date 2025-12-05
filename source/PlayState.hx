@@ -79,6 +79,8 @@ class PlayState extends FlxState
 
 			var interactable_sprite_object:InteractableSpriteObject = new InteractableSpriteObject(entity.values.id);
 			Reflect.deleteField(entity.values, 'id');
+			
+			interactable_sprite_object.setPosition(entity.x, entity.y);
 
 			if (entity.values?.has_image ?? false && entity.values?.image_path != null)
 			{
