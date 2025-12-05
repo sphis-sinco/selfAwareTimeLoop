@@ -1,0 +1,38 @@
+{
+    "dummy": [
+        {
+            "id": 1,
+            "collision": "NONE"
+        },
+        {
+            "id": 2,
+            "collision": "ANY"
+        }
+    ],
+    "main": [
+        {
+            "id": 0,
+            "collision": "ANY"
+        },
+        {
+            "id": 1,
+            "collision": "NONE"
+        },
+        {
+            "id": 2,
+            "collision": "LEFT"
+        },
+        {
+            "id": 3,
+            "collision": "RIGHT"
+        },
+        {
+            "id": 4,
+            "collision": "UP"
+        },
+        {
+            "id": 5,
+            "collision": "DOWN"
+        }
+    ]
+}

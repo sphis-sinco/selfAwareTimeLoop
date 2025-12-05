@@ -23,8 +23,7 @@ class World extends FlxTilemap
 
 	public function reload(ogmo_name:String, level_name:String, target_layer:String)
 	{
-		trace('Loading level: ' + level_name);
-		trace('\t* Layer: ' + target_layer);
+		trace('Loading World Layer: ' + target_layer);
         this.layer = target_layer;
 
 		map = new FlxOgmo3Loader('assets/data/levels/' + ogmo_name + '.ogmo', 'assets/data/levels/' + level_name + '.json');
