@@ -32,7 +32,7 @@ class PlayState extends FlxState
 		tilemaps = new FlxTypedGroup<World>();
 		add(tilemaps);
 
-		for (layer in level_data?.layer ?? [])
+		for (layer in level_data?.layers ?? [])
 		{
 			var tilemap = new World(ogmo, level, layer.name);
 			tilemaps.add(tilemap);
