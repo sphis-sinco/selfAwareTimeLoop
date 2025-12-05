@@ -17,9 +17,7 @@ class Player extends FlxSprite
 
 	public var merged_controls:Dynamic;
 
-	public var current_speed:Float = 0.0;
-	public var speed_acceleration:Float = 0.5;
-	public var max_speed:Float = 16.0;
+	public var speed:Float = 4.0;
 
 	override public function new()
 	{
@@ -58,29 +56,17 @@ class Player extends FlxSprite
 
 		if (FlxG.keys.anyPressed(merged_controls.movement))
 		{
-			current_speed *= speed_acceleration;
-
-			if (Math.round(current_speed) == 0)
-				current_speed += 1;
-
 			if (FlxG.keys.anyPressed(controls.left))
-				this.x -= current_speed;
+				this.x -= speed;
 			else if (FlxG.keys.anyPressed(controls.right))
-				this.x += current_speed;
+				this.x += speed;
             
 			if (FlxG.keys.anyPressed(controls.down))
-				this.y += current_speed;
+				this.y += speed;
 			else if (FlxG.keys.anyPressed(controls.up))
-				this.y -= current_speed;
-		}
-		else
-		{
-			current_speed /= speed_acceleration;
+				this.y -= speed;
 		}
 
-		if (current_speed > max_speed)
-			current_speed = max_speed;
-
-		FlxG.watch.addQuick('Player Speed', current_speed);
+		FlxG.watch.addQuick('Player Speed', speed);
 	}
 }
