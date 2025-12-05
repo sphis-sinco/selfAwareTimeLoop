@@ -12,33 +12,37 @@ class World extends FlxTilemap
 {
 	public var map:FlxOgmo3Loader;
 
-	override public function new(ogmo_name:String, level_name:String)
+    public var layer:String;
+
+	override public function new(ogmo_name:String, level_name:String, layer:String)
 	{
 		super();
 
-		reload(ogmo_name, level_name);
+		reload(ogmo_name, level_name, layer);
 	}
 
-	public function reload(ogmo_name:String, level_name:String)
+	public function reload(ogmo_name:String, level_name:String, target_layer:String)
 	{
 		trace('Loading level: ' + level_name);
+		trace('\t* Layer: ' + target_layer);
+        this.layer = target_layer;
 
 		map = new FlxOgmo3Loader('assets/data/levels/' + ogmo_name + '.ogmo', 'assets/data/levels/' + level_name + '.json');
 		var tilemap_label:String = '';
 		@:privateAccess
 		for (layer in map.level.layers)
-			if (layer?.tileset != null && layer.name == 'walls')
+			if (layer?.tileset != null && layer.name == target_layer)
 			{
 				for (tileset in map.project.tilesets)
 					if (tileset.label == layer.tileset)
-						map.loadTilemap('assets/' + tileset.path.replace('../', ''), 'walls', this);
+						map.loadTilemap('assets/' + tileset.path.replace('../', ''), target_layer, this);
 				tilemap_label = layer.tileset.toLowerCase();
 				break;
 			}
 		follow();
-		trace('Tilemap: ' + tilemap_label);
+		trace('\t* Tilemap: ' + tilemap_label);
 
-		for (tile in Reflect.field(Json.parse(Assets.getText('assets/data/tileset.json')), tilemap_label) ?? [])
+		for (tile in Reflect.field(Json.parse(Assets.getText('assets/data/tilesets.json')), tilemap_label) ?? [])
 		{
 			var collision:FlxDirectionFlags = switch (Std.string(tile?.collision).toLowerCase())
 			{
