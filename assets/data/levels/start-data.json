@@ -3,6 +3,10 @@
         {
             "name": "wall",
             "main": true
+        },
+        {
+            "name": "back_wall",
+            "main": false
         }
     ]
 }
