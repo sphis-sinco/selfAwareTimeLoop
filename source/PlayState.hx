@@ -26,9 +26,14 @@ class PlayState extends FlxState
 	public var entities:FlxTypedGroup<FlxBasic>;
 	public var level_data:LevelData;
 
+	public static var instance:PlayState;
+
 	override public function new(?ogmo:String = 'main', ?level:String = 'start')
 	{
 		super();
+
+		if (instance != null) instance = null;
+		instance = this;
 
 		level_data = Json.parse(Assets.getText('assets/data/levels/' + level + '-data.json'));
 		trace('Loading level: ' + level);
