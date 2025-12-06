@@ -1,5 +1,6 @@
 package;
 
+import ctDialogueBox.ctdb.CtDialogueBox;
 import satl.interactions.InteractionManager;
 import satl.Utilities;
 import flixel.util.FlxColor;
@@ -20,6 +21,8 @@ import flixel.FlxState;
 
 class PlayState extends FlxState
 {
+	public var in_cutscene:Bool = false;
+
 	public var player:Player;
 	public var player_campos:FlxObject;
 
@@ -29,11 +32,14 @@ class PlayState extends FlxState
 
 	public static var instance:PlayState;
 
+	public var dialogue_box:CtDialogueBox;
+
 	override public function new(?ogmo:String = 'main', ?level:String = 'start')
 	{
 		super();
 
-		if (instance != null) instance = null;
+		if (instance != null)
+			instance = null;
 		instance = this;
 
 		level_data = Json.parse(Assets.getText('assets/data/levels/' + level + '-data.json'));
@@ -70,6 +76,19 @@ class PlayState extends FlxState
 
 		player_campos = new FlxObject(0, 0, player.width, player.height);
 		add(player_campos);
+
+		dialogue_box = new CtDialogueBox({});
+		add(dialogue_box);
+
+		dialogue_box.visible = false;
+
+		dialogue_box.scrollFactor.set();
+		dialogue_box.screenCenter();
+		dialogue_box.y = FlxG.height - dialogue_box.height - 32;
+
+		dialogue_box.settings.boxImgPath = 'dialogueBox';
+		dialogue_box.settings.autoPreloadFont = true;
+		dialogue_box.settings.boxPosition = dialogue_box.getPosition();
 
 		// FlxG.camera.zoom = 2;
 	}
@@ -116,6 +135,8 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
+		player.can_move = !in_cutscene;
+
 		player.update(elapsed);
 		for (tilemap in tilemaps.members)
 			for (layer in level_data?.layers ?? [])
@@ -128,7 +149,7 @@ class PlayState extends FlxState
 
 			if (iso != null)
 			{
-				if (player.overlaps(iso) && FlxG.keys.anyJustReleased(player.merged_controls.interaction))
+				if (!in_cutscene && player.overlaps(iso) && FlxG.keys.anyJustReleased(player.merged_controls.interaction))
 				{
 					iso.interact();
 				}

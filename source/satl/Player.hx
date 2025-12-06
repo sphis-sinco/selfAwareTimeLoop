@@ -18,6 +18,7 @@ class Player extends FlxSprite
 	public var merged_controls:Dynamic;
 
 	public var speed:Float = 1.0;
+	public var can_move:Bool = true;
 
 	override public function new()
 	{
@@ -56,7 +57,7 @@ class Player extends FlxSprite
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.anyPressed(merged_controls.movement))
+		if (FlxG.keys.anyPressed(merged_controls.movement) && can_move)
 		{
 			if (FlxG.keys.anyPressed(controls.left))
 				this.x -= speed;

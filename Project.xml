@@ -34,6 +34,7 @@
 
 	<source path="source" />
 	<assets path="assets"/>
+	<assets path=".dev/dialogue_testing_stuffs" rename="assets/" if="DIALOGUE_TESTING_STUFFS"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
