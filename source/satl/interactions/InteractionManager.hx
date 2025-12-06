@@ -13,6 +13,8 @@ class InteractionManager
 	{
 		if (game == null)
 			return;
+		if (game.dialogue_box == null)
+			return;
 
 		switch (iso.id)
 		{

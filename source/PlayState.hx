@@ -124,8 +124,12 @@ class PlayState extends FlxState
 			trace('Created I.S.O. with id: ' + interactable_sprite_object.id);
 			for (field in Reflect.fields(interactable_sprite_object.data))
 				trace('  * ' + field + ': ' + Reflect.field(interactable_sprite_object.data, field));
+			interactable_sprite_object.data = entity.values;
 
-			InteractionManager.getISOInteraction(interactable_sprite_object);
+			interactable_sprite_object.interact = function()
+			{
+				InteractionManager.getISOInteraction(interactable_sprite_object);
+			};
 
 			entities.add(interactable_sprite_object);
 		}
