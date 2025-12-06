@@ -1,5 +1,6 @@
 package satl;
 
+import flixel.tweens.FlxTween;
 import flixel.sound.FlxSound;
 import flixel.util.FlxColor;
 import flixel.FlxG;
