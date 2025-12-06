@@ -119,14 +119,13 @@
       "canFlipX": false,
       "canFlipY": false,
       "canSetColor": false,
-      "hasNodes": true,
+      "hasNodes": false,
       "nodeLimit": 0,
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
       "values": [
         {"name": "id", "definition": "String", "display": 2, "defaults": "Unknown", "maxLength": 0, "trimWhitespace": true},
-        {"name": "has_collision", "definition": "Boolean", "display": 2, "defaults": false},
         {"name": "graphic_color", "definition": "Color", "display": 2, "defaults": "#ff0000ff", "includeAlpha": false},
         {"name": "has_image", "definition": "Boolean", "display": 2, "defaults": false},
         {

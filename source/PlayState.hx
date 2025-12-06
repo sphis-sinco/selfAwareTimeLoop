@@ -120,10 +120,8 @@ class PlayState extends FlxState
 
 			if (iso != null)
 			{
-				if (iso.data.has_collision)
-				{
+				if (iso.data.can_move)
 					FlxG.collide(player, iso);
-				}
 			}
 		}
 
