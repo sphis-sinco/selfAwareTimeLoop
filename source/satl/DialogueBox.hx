@@ -1,5 +1,7 @@
 package satl;
 
+import satl.LevelData.DialogueLine;
+import flixel.util.typeLimit.OneOfTwo;
 import flixel.tweens.FlxTween;
 import flixel.sound.FlxSound;
 import flixel.util.FlxColor;
@@ -34,6 +36,9 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 
 	public function setDialogue(dialogue:String, ?dialogue_sound:String = null)
 	{
+        if (dialogue == null)
+            return;
+
 		text.text = dialogue;
 
 		voice_line.stop();
@@ -73,7 +78,7 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 
 	public dynamic function dialogueUpdate() {}
 
-	public function loadDialogues(dia:Array<Array<String>>)
+	public function loadDialogues(dia:Array<DialogueLine>)
 	{
 		if (PlayState.instance == null)
 			return;
@@ -87,19 +92,27 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 
 		dialogueUpdate = () ->
 		{
-			if (text.text != dia[index][0])
-				setDialogue(dia[index][0], dia[index][1] ?? null);
-
 			if (FlxG.keys.anyJustReleased(PlayState.instance.player.controls.proceed))
-			{
 				index++;
 
-				if (index >= dia.length)
-				{
-					hide();
-					PlayState.instance.in_cutscene = false;
-				}
+			var dialogue_action_tags:Array<String> = dia[index]?.tags;
+
+			if (dialogue_action_tags != null)
+				for (tag in dialogue_action_tags)
+					if (!Save.action_tags.contains(tag))
+					{
+						index++;
+						break;
+					}
+
+			if (index >= dia.length || dia[index] == null)
+			{
+				hide();
+				PlayState.instance.in_cutscene = false;
 			}
+
+			if (text.text != dia[index]?.line)
+				setDialogue(dia[index]?.line, dia[index]?.sound);
 		};
 	}
 }

@@ -1,7 +1,7 @@
 package;
 
 import satl.DialogueBox;
-import satl.interactions.InteractionManager;
+import satl.InteractionManager;
 import satl.Utilities;
 import flixel.util.FlxColor;
 import flixel.FlxBasic;

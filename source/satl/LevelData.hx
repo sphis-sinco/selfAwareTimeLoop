@@ -11,3 +11,9 @@ typedef LayerData = {
     collision:Bool,
     layer:Int
 }
+
+typedef DialogueLine = {
+    line:String,
+    sound:String,
+    tags:Array<String>,
+}

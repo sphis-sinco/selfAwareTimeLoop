@@ -1,4 +1,4 @@
-package satl.interactions;
+package satl;
 
 class InteractionManager
 {
