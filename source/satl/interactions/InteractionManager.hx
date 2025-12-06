@@ -19,7 +19,7 @@ class InteractionManager
 			default:
 				game.in_cutscene = true;
                 game.dialogue_box.show();
-                game.dialogue_box.setDialogue('YO.');
+                game.dialogue_box.setDialogue('Unkown interation: ' + iso.id);
 		}
 	}
 }

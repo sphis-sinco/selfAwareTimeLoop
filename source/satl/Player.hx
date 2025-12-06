@@ -12,7 +12,10 @@ class Player extends FlxSprite
 		down: [FlxKey.S, FlxKey.DOWN],
 		up: [FlxKey.W, FlxKey.UP],
 		right: [FlxKey.D, FlxKey.RIGHT],
-		interact: [FlxKey.SPACE]
+		
+		interact: [FlxKey.SPACE],
+		proceed: [FlxKey.ENTER],
+		leave: [FlxKey.ESCAPE]
 	};
 
 	public var merged_controls:Dynamic;
@@ -45,6 +48,10 @@ class Player extends FlxSprite
 			merged_movement.push(key);
 
 		for (key in controls.interact)
+			merged_interaction.push(key);
+		for (key in controls.leave)
+			merged_interaction.push(key);
+		for (key in controls.proceed)
 			merged_interaction.push(key);
 
 		merged_controls = {

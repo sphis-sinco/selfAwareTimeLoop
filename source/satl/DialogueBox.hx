@@ -36,28 +36,28 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 	{
 		text.text = dialogue;
 
-        voice_line.stop();
+		voice_line.stop();
 
 		if (dialogue_sound != null)
 		{
 			voice_line.loadStream('assets/sounds/dialogue/' + dialogue_sound + '.wav');
-            voice_line.play();
+			voice_line.play();
 		}
 	}
 
-    public function hide()
-    {
-        text.visible = false;
-        box.visible = false;
+	public function hide()
+	{
+		text.visible = false;
+		box.visible = false;
 
-        voice_line.pause();
-    }
+		voice_line.pause();
+	}
 
-    public function show()
-    {
-        text.visible = true;
-        box.visible = true;
+	public function show()
+	{
+		text.visible = true;
+		box.visible = true;
 
-        voice_line.play();
-    }
+		voice_line.play();
+	}
 }

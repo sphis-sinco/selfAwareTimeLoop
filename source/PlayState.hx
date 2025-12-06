@@ -120,6 +120,10 @@ class PlayState extends FlxState
 				trace('  * ' + field + ': ' + Reflect.field(interactable_sprite_object.data, field));
 			interactable_sprite_object.data = entity.values;
 
+			interactable_sprite_object.scale.set(0.8, 0.8);
+			interactable_sprite_object.updateHitbox();
+			interactable_sprite_object.scale.set(1, 1);
+
 			interactable_sprite_object.interact = function()
 			{
 				InteractionManager.getISOInteraction(interactable_sprite_object);
@@ -133,37 +137,38 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
+		if (in_cutscene && FlxG.keys.anyJustReleased(player.controls.leave))
+		{
+			in_cutscene = false;
+			dialogue_box.hide();
+		}
+
 		player.can_move = !in_cutscene;
 
 		player.update(elapsed);
-		for (tilemap in tilemaps.members)
-			for (layer in level_data?.layers ?? [])
-				if (layer.collision && layer.name == tilemap.layer)
-					FlxG.collide(player, tilemap);
-
-		for (entity in entities)
+		if (!in_cutscene)
 		{
-			var iso:InteractableSpriteObject = cast entity;
+			for (tilemap in tilemaps.members)
+				for (layer in level_data?.layers ?? [])
+					if (layer.collision && layer.name == tilemap.layer)
+						FlxG.collide(player, tilemap);
 
-			if (iso != null)
+			for (entity in entities)
 			{
-				if (!in_cutscene && player.overlaps(iso) && FlxG.keys.anyJustReleased(player.merged_controls.interaction))
-				{
-					iso.interact();
-				}
+				var iso:InteractableSpriteObject = cast entity;
 
-				if (iso.data.can_move)
-					FlxG.collide(player, iso);
+				if (iso != null)
+				{
+					if (!in_cutscene && player.overlaps(iso) && FlxG.keys.anyJustReleased(player.controls.interact))
+						iso.interact();
+
+					if (iso.data.can_move)
+						FlxG.collide(player, iso);
+				}
 			}
 		}
 
 		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y);
 		FlxG.camera.follow(player_campos, FlxCameraFollowStyle.TOPDOWN_TIGHT, 1);
-
-		if (in_cutscene && FlxG.keys.anyJustReleased(player.merged_controls.interaction))
-		{
-			in_cutscene = false;
-			dialogue_box.hide();
-		}
 	}
 }
