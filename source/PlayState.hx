@@ -120,6 +120,11 @@ class PlayState extends FlxState
 
 			if (iso != null)
 			{
+				if (player.overlaps(iso) && FlxG.keys.anyJustReleased(player.merged_controls.interaction))
+				{
+					iso.interact();
+				}
+
 				if (iso.data.can_move)
 					FlxG.collide(player, iso);
 			}
