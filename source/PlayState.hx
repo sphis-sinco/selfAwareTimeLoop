@@ -94,8 +94,6 @@ class PlayState extends FlxState
 				interactable_sprite_object.makeGraphic(16, 16, FlxColor.fromString(color) ?? FlxColor.RED);
 			}
 
-			if (entity.values?.has_collision)
-				interactable_sprite_object.allowCollisions = Utilities.convertStringToDirectionFlag(entity.values?.collision_type);
 			interactable_sprite_object.data = entity.values;
 
 			trace('Created I.S.O. with id: ' + interactable_sprite_object.id);
@@ -123,7 +121,9 @@ class PlayState extends FlxState
 			if (iso != null)
 			{
 				if (iso.data.has_collision)
+				{
 					FlxG.collide(player, iso);
+				}
 			}
 		}
 

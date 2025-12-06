@@ -15,6 +15,8 @@ class Player extends FlxSprite
 		interact: [FlxKey.SPACE]
 	};
 
+	public var last_dir:String = '';
+
 	public var merged_controls:Dynamic;
 
 	public var speed:Float = 1.0;
@@ -59,14 +61,30 @@ class Player extends FlxSprite
 		if (FlxG.keys.anyPressed(merged_controls.movement))
 		{
 			if (FlxG.keys.anyPressed(controls.left))
+			{
 				this.x -= speed;
+				last_dir = 'left';
+			}
 			else if (FlxG.keys.anyPressed(controls.right))
+			{
 				this.x += speed;
-            
+				last_dir = 'right';
+			}
+
 			if (FlxG.keys.anyPressed(controls.down))
+			{
 				this.y += speed;
+				last_dir = 'down';
+			}
 			else if (FlxG.keys.anyPressed(controls.up))
+			{
 				this.y -= speed;
+				last_dir = 'up';
+			}
+		}
+		else
+		{
+			last_dir = '';
 		}
 
 		FlxG.watch.addQuick('Player Speed', speed);

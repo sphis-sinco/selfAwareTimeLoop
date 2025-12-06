@@ -119,10 +119,10 @@
       "canFlipX": false,
       "canFlipY": false,
       "canSetColor": false,
-      "hasNodes": false,
+      "hasNodes": true,
       "nodeLimit": 0,
       "nodeDisplay": 0,
-      "nodeGhost": false,
+      "nodeGhost": true,
       "tags": [],
       "values": [
         {"name": "id", "definition": "String", "display": 2, "defaults": "Unknown", "maxLength": 0, "trimWhitespace": true},
@@ -136,7 +136,7 @@
           "defaults": "proj:",
           "extensions": ["png"]
         },
-        {"name": "collision_type", "definition": "String", "display": 2, "defaults": "NONE", "maxLength": 0, "trimWhitespace": true}
+        {"name": "can_move", "definition": "Boolean", "display": 2, "defaults": true}
       ]
     }
   ],
