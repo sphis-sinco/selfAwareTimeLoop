@@ -60,4 +60,46 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 
 		voice_line.play();
 	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (box.visible)
+		{
+			dialogueUpdate();
+		}
+	}
+
+	public dynamic function dialogueUpdate() {}
+
+	public function loadDialogues(dia:Array<Array<String>>)
+	{
+		if (PlayState.instance == null)
+			return;
+		if (PlayState.instance.player == null)
+			return;
+
+		var index = 0;
+
+		PlayState.instance.in_cutscene = true;
+		show();
+
+		dialogueUpdate = () ->
+		{
+			if (text.text != dia[index][0])
+				setDialogue(dia[index][0], dia[index][1] ?? null);
+
+			if (FlxG.keys.anyJustReleased(PlayState.instance.player.controls.proceed))
+			{
+				index++;
+
+				if (index >= dia.length)
+				{
+					hide();
+					PlayState.instance.in_cutscene = false;
+				}
+			}
+		};
+	}
 }

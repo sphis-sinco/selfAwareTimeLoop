@@ -2,9 +2,9 @@ package satl.interactions;
 
 class InteractionManager
 {
-	static var game(get, never):PlayState;
+	public static var game(get, never):PlayState;
 
-	static function get_game():PlayState
+	public static function get_game():PlayState
 	{
 		return PlayState.instance;
 	}
@@ -16,12 +16,17 @@ class InteractionManager
 
 		switch (iso.id)
 		{
+			case 'dummy_dialogue_1':
+				DummyDialogues.dummy_dialogue_1();
+			case 'dummy_dialogue_2':
+				DummyDialogues.dummy_dialogue_2();
+
 			default:
 				#if DIALOGUE_TESTING_STUFFS
 				game.in_cutscene = true;
 				game.dialogue_box.show();
 				#end
-				game.dialogue_box.setDialogue('Unkown interation: ' + iso.id);
+				game.dialogue_box.setDialogue('Unknown interation: ' + iso.id);
 				trace(game.dialogue_box.text.text);
 		}
 	}
