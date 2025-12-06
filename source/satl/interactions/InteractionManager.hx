@@ -17,9 +17,12 @@ class InteractionManager
 		switch (iso.id)
 		{
 			default:
+				#if DIALOGUE_TESTING_STUFFS
 				game.in_cutscene = true;
-                game.dialogue_box.show();
-                game.dialogue_box.setDialogue('Unkown interation: ' + iso.id);
+				game.dialogue_box.show();
+				#end
+				game.dialogue_box.setDialogue('Unkown interation: ' + iso.id);
+				trace(game.dialogue_box.text.text);
 		}
 	}
 }
