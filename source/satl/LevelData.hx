@@ -1,7 +1,8 @@
 package satl;
 
 typedef LevelData = {
-    layers:Array<LayerData>
+    layers:Array<LayerData>,
+    dialogues:Dynamic
 }
 
 typedef LayerData = {

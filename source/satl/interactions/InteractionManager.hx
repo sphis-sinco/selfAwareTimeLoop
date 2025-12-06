@@ -16,18 +16,20 @@ class InteractionManager
 
 		switch (iso.id)
 		{
-			case 'dummy_dialogue_1':
-				DummyDialogues.dummy_dialogue_1();
-			case 'dummy_dialogue_2':
-				DummyDialogues.dummy_dialogue_2();
-
 			default:
-				#if DIALOGUE_TESTING_STUFFS
-				game.in_cutscene = true;
-				game.dialogue_box.show();
-				#end
-				game.dialogue_box.setDialogue('Unknown interation: ' + iso.id);
-				trace(game.dialogue_box.text.text);
+				if (!Reflect.hasField(game.level_data.dialogues, iso.id))
+				{
+					#if DIALOGUE_TESTING_STUFFS
+					game.in_cutscene = true;
+					game.dialogue_box.show();
+					#end
+					game.dialogue_box.setDialogue('Unknown interation: ' + iso.id);
+					trace(game.dialogue_box.text.text);
+				}
+				else
+				{
+					game.dialogue_box.loadDialogues(Reflect.field(game.level_data.dialogues, iso.id));
+				}
 		}
 	}
 }

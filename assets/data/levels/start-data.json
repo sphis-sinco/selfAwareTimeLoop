@@ -14,5 +14,21 @@
             "name": "backer_wall",
             "layer": 3
         }
-    ]
+    ],
+
+    "dialogues": {
+        "dummy_dialogue_1": [
+            ["hey..."], 
+            ["HEY."], 
+            ["HEY!!!!!!!!!!"], 
+            ["WHAT THE FUCK!"]
+        ],
+        "dummy_dialogue_2": [
+            ["yo"], 
+            ["huh?"], 
+            ["yoooooo!"], 
+            ["YOOOOOOOOOOO!"]
+        ]
+    }
+
 }
