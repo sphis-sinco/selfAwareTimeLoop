@@ -24,7 +24,7 @@
           "y": 160,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "dummy_dialogue_1", "graphic_color": "#ff0000ff", "has_image": false, "image_path": "proj:../../images/dummy-tilemap.png", "can_move": true}
+          "values": {"id": "dummy_dialogue_1", "graphic_color": "#ff0000ff", "has_image": false, "image_path": "proj:../../images/dummy-tilemap.png", "can_move": true, "required_tags_for_interaction": ""}
         },
         {
           "name": "interactable_sprite_object",
@@ -34,7 +34,7 @@
           "y": 160,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "dummy_dialogue_2", "graphic_color": "#00ff00ff", "has_image": false, "image_path": "proj:", "can_move": false}
+          "values": {"id": "dummy_dialogue_2", "graphic_color": "#00ff00ff", "has_image": false, "image_path": "proj:", "can_move": false, "required_tags_for_interaction": "obtainable_tag"}
         }
       ]
     },

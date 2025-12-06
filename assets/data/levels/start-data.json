@@ -18,15 +18,15 @@
 
     "dialogues": {
         "dummy_dialogue_1": [
-            {"line": "hey...", "tags": ["unobtainable_tag"]}, 
-            {"line": "HEY.", "tags": ["unobtainable_tag"]},
-            {"line": "HEY!!!!!", "tags": ["unobtainable_tag"]},
-            {"line": "WHAT THE F-", "tags": ["unobtainable_tag"], "grant": ["obtainable_tag"]}
+            {"line": "hey...", "want_tags": ["unobtainable_tag"]}, 
+            {"line": "HEY.", "want_tags": ["unobtainable_tag"]},
+            {"line": "HEY!!!!!"},
+            {"line": "WHAT THE F-", "grant_tags": ["obtainable_tag"]}
         ],
         "dummy_dialogue_2": [
             {"line": "yo..."}, 
             {"line": "yo?"},
-            {"line": "YO!!!!!"}
+            {"line": "YO!!!!!", "grant_tags": ["unobtainable_tag"]}
         ]
     }
 

@@ -1,5 +1,6 @@
 package;
 
+import satl.Save;
 import satl.DialogueBox;
 import satl.InteractionManager;
 import satl.Utilities;
@@ -160,10 +161,38 @@ class PlayState extends FlxState
 				if (iso != null)
 				{
 					if (!in_cutscene && player.overlaps(iso) && FlxG.keys.anyJustReleased(player.controls.interact))
-						iso.interact();
+					{
+						var can_play:Bool = true;
+						try
+						{
+							var tags:Array<String> = iso.data?.required_tags_for_interaction.split('\n');
+
+							if (tags.length > 0)
+								for (tag in tags)
+									if (tag.length > 0)
+										if (!Save.action_tags.contains(tag))
+										{
+											trace('Missing tag: ' + tag);
+											can_play = false;
+										}
+						}
+						catch (e)
+						{
+							trace(e);
+						}
+
+						if (can_play)
+						{
+							trace('can_play');
+							iso.interact();
+						}
+					}
 
 					if (iso.data.can_move)
+					{
 						FlxG.collide(player, iso);
+						FlxG.collide(iso, tilemaps);
+					}
 				}
 			}
 		}

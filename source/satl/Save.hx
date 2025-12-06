@@ -28,4 +28,13 @@ class Save
 	#end
 
 	public static var action_tags:Array<String> = [];
+
+	public static function addActionTag(tag:String)
+	{
+		if (!action_tags.contains(tag))
+		{
+			trace('Added tag: ' + tag);
+			action_tags.push(tag);
+		}
+	}
 }

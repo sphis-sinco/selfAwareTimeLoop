@@ -15,5 +15,8 @@ typedef LayerData = {
 typedef DialogueLine = {
     line:String,
     sound:String,
-    tags:Array<String>,
+    
+    want_tags:Array<String>,
+    dont_want_tags:Array<String>,
+    grant_tags:Array<String>,
 }

@@ -135,7 +135,8 @@
           "defaults": "proj:",
           "extensions": ["png"]
         },
-        {"name": "can_move", "definition": "Boolean", "display": 2, "defaults": true}
+        {"name": "can_move", "definition": "Boolean", "display": 2, "defaults": true},
+        {"name": "required_tags_for_interaction", "definition": "Text", "display": 2, "defaults": ""}
       ]
     }
   ],

@@ -36,8 +36,8 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 
 	public function setDialogue(dialogue:String, ?dialogue_sound:String = null)
 	{
-        if (dialogue == null)
-            return;
+		if (dialogue == null)
+			return;
 
 		text.text = dialogue;
 
@@ -95,14 +95,22 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 			if (FlxG.keys.anyJustReleased(PlayState.instance.player.controls.proceed))
 				index++;
 
-			var dialogue_action_tags:Array<String> = dia[index]?.tags;
+			var want_tags:Array<String> = dia[index]?.want_tags;
+			var dont_want_tags:Array<String> = dia[index]?.dont_want_tags;
 
-			if (dialogue_action_tags != null)
-				for (tag in dialogue_action_tags)
+			if (want_tags != null)
+				for (tag in want_tags)
 					if (!Save.action_tags.contains(tag))
 					{
 						index++;
-						break;
+                        trace('Missing tag for dialogue: ' + tag);
+					}
+			if (dont_want_tags != null)
+				for (tag in dont_want_tags)
+					if (Save.action_tags.contains(tag))
+					{
+						index++;
+                        trace('Unwanted tag for dialogue: ' + tag);
 					}
 
 			if (index >= dia.length || dia[index] == null)
@@ -113,6 +121,12 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
 
 			if (text.text != dia[index]?.line)
 				setDialogue(dia[index]?.line, dia[index]?.sound);
+
+			if (dia[index]?.grant_tags != null)
+			{
+				for (tag in dia[index].grant_tags)
+					Save.addActionTag(tag);
+			}
 		};
 	}
 }
