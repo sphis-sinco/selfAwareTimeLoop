@@ -1,5 +1,6 @@
 package;
 
+import satl.DialogueBox;
 import satl.interactions.InteractionManager;
 import satl.Utilities;
 import flixel.util.FlxColor;
@@ -30,6 +31,8 @@ class PlayState extends FlxState
 	public var level_data:LevelData;
 
 	public static var instance:PlayState;
+
+	public var dialogue_box:DialogueBox;
 
 	override public function new(?ogmo:String = 'main', ?level:String = 'start')
 	{
@@ -73,6 +76,10 @@ class PlayState extends FlxState
 
 		player_campos = new FlxObject(0, 0, player.width, player.height);
 		add(player_campos);
+
+		dialogue_box = new DialogueBox('N/A');
+		dialogue_box.screenCenter();
+		add(dialogue_box);
 
 		// FlxG.camera.zoom = 2;
 	}
