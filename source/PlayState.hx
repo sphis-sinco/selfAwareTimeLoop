@@ -1,5 +1,6 @@
 package;
 
+import ctDialogueBox.ctdb.CtDialogueBoxSettings;
 import ctDialogueBox.ctdb.CtDialogueBox;
 import satl.interactions.InteractionManager;
 import satl.Utilities;
@@ -33,6 +34,7 @@ class PlayState extends FlxState
 	public static var instance:PlayState;
 
 	public var dialogue_box:CtDialogueBox;
+	public var dialogue_box_settings:CtDialogueBoxSettings;
 
 	override public function new(?ogmo:String = 'main', ?level:String = 'start')
 	{
@@ -77,6 +79,11 @@ class PlayState extends FlxState
 		player_campos = new FlxObject(0, 0, player.width, player.height);
 		add(player_campos);
 
+		dialogue_box_settings = new CtDialogueBoxSettings();
+		dialogue_box_settings.autoPreloadFont = true;
+		dialogue_box_settings.fontSize = 4;
+		dialogue_box_settings.boxImgPath = null;
+
 		dialogue_box = new CtDialogueBox({});
 		add(dialogue_box);
 
@@ -85,10 +92,6 @@ class PlayState extends FlxState
 		dialogue_box.scrollFactor.set();
 		dialogue_box.screenCenter();
 		dialogue_box.y = FlxG.height - dialogue_box.height - 32;
-
-		dialogue_box.settings.boxImgPath = 'dialogueBox';
-		dialogue_box.settings.autoPreloadFont = true;
-		dialogue_box.settings.boxPosition = dialogue_box.getPosition();
 
 		// FlxG.camera.zoom = 2;
 	}
