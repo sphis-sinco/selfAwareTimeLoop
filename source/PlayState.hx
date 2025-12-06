@@ -159,5 +159,11 @@ class PlayState extends FlxState
 
 		player_campos.setPosition(player.getGraphicMidpoint().x, player.getGraphicMidpoint().y);
 		FlxG.camera.follow(player_campos, FlxCameraFollowStyle.TOPDOWN_TIGHT, 1);
+
+		if (in_cutscene && FlxG.keys.anyJustReleased(player.merged_controls.interaction))
+		{
+			in_cutscene = false;
+			dialogue_box.hide();
+		}
 	}
 }
