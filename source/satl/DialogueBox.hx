@@ -44,4 +44,20 @@ class DialogueBox extends FlxTypedSpriteGroup<FlxSprite>
             voice_line.play();
 		}
 	}
+
+    public function hide()
+    {
+        text.visible = false;
+        box.visible = false;
+
+        voice_line.pause();
+    }
+
+    public function show()
+    {
+        text.visible = true;
+        box.visible = true;
+
+        voice_line.play();
+    }
 }
