@@ -82,6 +82,7 @@ class PlayState extends FlxState
 		dialogue_box.scrollFactor.set();
 		dialogue_box.y = FlxG.height - dialogue_box.height - 32;
 		add(dialogue_box);
+		dialogue_box.hide();
 
 		// FlxG.camera.zoom = 2;
 	}
