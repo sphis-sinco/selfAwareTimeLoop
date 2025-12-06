@@ -1,5 +1,6 @@
 package;
 
+import satl.interactions.InteractionManager;
 import satl.Utilities;
 import flixel.util.FlxColor;
 import flixel.FlxBasic;
@@ -104,6 +105,8 @@ class PlayState extends FlxState
 			trace('Created I.S.O. with id: ' + interactable_sprite_object.id);
 			for (field in Reflect.fields(interactable_sprite_object.data))
 				trace('  * ' + field + ': ' + Reflect.field(interactable_sprite_object.data, field));
+
+			InteractionManager.getISOInteraction(interactable_sprite_object);
 
 			entities.add(interactable_sprite_object);
 		}
